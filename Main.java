@@ -1,10 +1,24 @@
 import java.util.Scanner;
-import java.util.Random;
 
+import src.Employee;
+
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        System.out.println("Insira o nome:");
+        String nome = input.nextLine();
+        System.out.println("Insira o endereco:");
+        String address = input.nextLine();
+        System.out.println("Insira o n do cartão:");
+        double card = input.nextDouble();
+
+        Employee employee = new Employee(nome, address, card);
+
+        System.out.println(employee.showEmployeeInfo());
+
+        /* Scanner input = new Scanner(System.in);
         Random randInt = new Random();
 
         for(;;) {
@@ -69,6 +83,6 @@ public class Main {
             }
         }
 
-        
+         */
     }
 }
