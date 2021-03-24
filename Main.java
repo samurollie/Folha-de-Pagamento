@@ -6,20 +6,14 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Insira o nome:");
-        String nome = input.nextLine();
-        System.out.println("Insira o endereco:");
-        String address = input.nextLine();
-        System.out.println("Insira o n do cartão:");
-        double card = input.nextDouble();
-
-        Employee employee = new Employee(nome, address, card);
-
-        System.out.println(employee.showEmployeeInfo());
-
-        /* Scanner input = new Scanner(System.in);
         Random randInt = new Random();
+        Scanner input = new Scanner(System.in);
+
+        Boolean[] empregados = new Boolean[500];
+        int id;
+        for(Boolean b : empregados){
+            b = false;
+        }
 
         for(;;) {
             System.out.println("Selecione uma opção:");
@@ -34,19 +28,47 @@ public class Main {
             System.out.println("(9) - Agenda de Pagamento");
             System.out.println("(10) - Criar novas agendas de pagamento");
             System.out.println("(11) - Sair");
-            int cmd = input.nextInt();
-            int num = randInt.nextInt(500);
+            int cmd = Integer.parseInt(input.nextLine());
+
             switch(cmd){
                 case 1:
-                    System.out.println("Adicionando empregado " + num);
+                    System.out.println("Insira o nome do empregado:");
+                    String nome = input.nextLine();
+
+                    System.out.println("Insira o endereco do empregado:");
+                    String address = input.nextLine();
+
+                    System.out.println("Gerando o nº do cartão...");
+                    id = randInt.nextInt(500); // Gera um número aletório de 0 a 500
+                    while(empregados[id] == false) {
+                        id = randInt.nextInt(500);
+                    }
+                    
+                    System.out.println("Adicionando empregado " + id);
+                    empregados[id] = true;
+
+                    Employee employee = new Employee(nome, address, id);
+                    
                     System.out.println("Empregado adicionado!\n");
+                    System.out.println(employee.showEmployeeInfo());
                     break;
                 case 2:
-                    System.out.println("Removendo empregado " + num);
-                    System.out.println("Empregado removido!\n");
+                    System.out.println("Insira o nº do empregado que deseja remover...");
+                    id = input.nextInt();
+                    System.out.println("Removendo empregado " + id);
+                    for (int i = 0; i < empregados.length; i++){
+                        if (empregados[i] == true) {
+                            empregados[i] = false;
+                            System.out.println("Empregado removido!\n");
+                            break;
+                        }
+                    }
+                    // Quando remover um empregado, tbm tem q dizer q aql
+                    System.out.println("Empregado não encontrado!\n");
                     break;
                 case 3:
-                    System.out.println("Resgistrando ponto para o empregado " + num);
+                    id = randInt.nextInt(500);
+                    System.out.println("Resgistrando ponto para o empregado " + id);
                     System.out.println("Ponto registrado!\n");
                     break;
                 case 4:
@@ -56,7 +78,8 @@ public class Main {
                     System.out.println("Taxa de serviço: 50%\n");
                     break;
                 case 6:
-                    System.out.println("Alterando dados do empregado " + num);
+                    id = randInt.nextInt(500);
+                    System.out.println("Alterando dados do empregado " + id);
                     System.out.println("Dados alterados! \n");
                     break;
                 case 7:
@@ -67,12 +90,14 @@ public class Main {
                     System.out.println("Desfazendo ultima ação...\n");
                     break;
                 case 9:
+                    id = randInt.nextInt(500);
                     System.out.println("Agenda de pagamentos:\n");
-                    System.out.println("Empregado " + num + ": 30/02\n");
+                    System.out.println("Empregado " + id + ": 30/02\n");
                     break;
                 case 10:
+                    id = randInt.nextInt(500);
                     System.out.println("Criando novas agendas...\n");
-                    System.out.println("Empregado " + num + ": 31/02\n");
+                    System.out.println("Empregado " + id + ": 31/02\n");
                     break;
                 case 11:
                     System.out.println("Saindo...\n");
@@ -82,7 +107,5 @@ public class Main {
                     break;
             }
         }
-
-         */
     }
 }
