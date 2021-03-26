@@ -9,11 +9,9 @@ public class Main {
         Random randInt = new Random();
         Scanner input = new Scanner(System.in);
 
-        Boolean[] empregados = new Boolean[500];
+        boolean[] empregados = new boolean[500];
+        
         int id;
-        for(Boolean b : empregados){
-            b = false;
-        }
 
         for(;;) {
             System.out.println("Selecione uma opção:");
@@ -38,16 +36,19 @@ public class Main {
                     System.out.println("Insira o endereco do empregado:");
                     String address = input.nextLine();
 
+                    System.out.println("Como " + nome + " deseja receber o seu salário?");
+                    String payment = input.nextLine();
+
                     System.out.println("Gerando o nº do cartão...");
                     id = randInt.nextInt(500); // Gera um número aletório de 0 a 500
-                    while(empregados[id] == false) {
+                    while(empregados[id] == true) { // True = tem alguem com aql numero
                         id = randInt.nextInt(500);
                     }
                     
                     System.out.println("Adicionando empregado " + id);
                     empregados[id] = true;
 
-                    Employee employee = new Employee(nome, address, id);
+                    Employee employee = new Employee(nome, address, id, payment);
                     
                     System.out.println("Empregado adicionado!\n");
                     System.out.println(employee.showEmployeeInfo());
@@ -56,14 +57,11 @@ public class Main {
                     System.out.println("Insira o nº do empregado que deseja remover...");
                     id = input.nextInt();
                     System.out.println("Removendo empregado " + id);
-                    for (int i = 0; i < empregados.length; i++){
-                        if (empregados[i] == true) {
-                            empregados[i] = false;
-                            System.out.println("Empregado removido!\n");
-                            break;
-                        }
+                    if (empregados[id] == true) {
+                        empregados[id] = false;
+                        System.out.println("Empregado removido!\n");
+                        break;
                     }
-                    // Quando remover um empregado, tbm tem q dizer q aql
                     System.out.println("Empregado não encontrado!\n");
                     break;
                 case 3:
