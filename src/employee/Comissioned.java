@@ -2,17 +2,17 @@ package src.employee;
 
 import src.Sell;
 
-public class ComissionedEmployee extends SalariedEmployee{
+public class Comissioned extends Salaried{
     private double comission_percentage;
     private Sell sells; // Array?
-
-    public ComissionedEmployee(String name, String adress, int card, String paymentMethod, double salary,
+    
+    public Comissioned(String name, String adress, int card, int paymentMethod, double salary,
             double comission_percentage, Sell sells) {
         super(name, adress, card, paymentMethod, salary);
-        this.setComission_percentage(comission_percentage);
-        this.setSells(sells);
+        this.comission_percentage = comission_percentage;
+        this.sells = sells;
     }
-
+    
     public Sell getSells() {
         return sells;
     }
@@ -28,5 +28,9 @@ public class ComissionedEmployee extends SalariedEmployee{
     public void setComission_percentage(double comission_percentage) {
         this.comission_percentage = comission_percentage;
     }
-    
+
+    @Override
+    public String showEmployeeInfo() {
+        return "Nome: " + this.name + "\nEndereco: " + this.adress +"\nNumero do cartao: " + this.card + "\nMetodo de Pagamento: " + this.paymentMethod;
+    }
 }

@@ -1,15 +1,16 @@
 import java.util.Random;
 import java.util.Scanner;
 
+import src.employee.Comissioned;
 import src.employee.Employee;
+import src.employee.Hourly;
+import src.employee.Salaried;
 
 public class Main {
     public static void main(String[] args) {
         Random randInt = new Random();
         Scanner input = new Scanner(System.in);
-
-        boolean[] empregados = new boolean[500];
-        
+        Employee employeeList[] = new Employee[500];
         int id;
 
         for(;;) {
@@ -25,35 +26,58 @@ public class Main {
             System.out.println("(9) - Agenda de Pagamento");
             System.out.println("(10) - Criar novas agendas de pagamento");
             System.out.println("(11) - Sair");
-            int cmd = Integer.parseInt(input.nextLine());
+            int cmd = input.nextInt();
+            input.nextLine();
 
             switch(cmd){
                 case 1:
                     System.out.println("Insira o nome do empregado:");
-                    String nome = input.nextLine();
+                    String name = input.nextLine();
 
                     System.out.println("Insira o endereco do empregado:");
                     String address = input.nextLine();
 
-                    System.out.println("Como " + nome + " deseja receber o seu salário?");
-                    String payment = input.nextLine();
+                    System.out.println("Como " + name + " deseja receber o seu salário?");
+                    System.out.println("(1) - Em mãos");
+                    System.out.println("(2) - Depósito bancário");
+                    System.out.println("(3) - Cheque pelos correios");
+                    int payment = input.nextInt();
+                    
+                    System.out.println("Que tipo de empregado " + name + " será?");
+                    System.out.println("(1) - Horista");
+                    System.out.println("(2) - Assalariado");
+                    int type = input.nextInt();
+                    int comissioned = 2;
+                    if (type == 2) {
+                        System.out.println("Será um empregado comissionado?");
+                        System.out.println("(1) - Sim");
+                        System.out.println("(2) - Não");
+                        comissioned = input.nextInt();
+                    }
 
                     System.out.println("Gerando o nº do cartão...");
                     id = randInt.nextInt(500); // Gera um número aletório de 0 a 500
-                    while(empregados[id] == true) { // True = tem alguem com aql numero
+                    while(employeeList[id] != null) { // Null = não tem alguem com aql numero
                         id = randInt.nextInt(500);
                     }
                     
                     System.out.println("Adicionando empregado " + id);
-                    empregados[id] = true;
-
-                    Employee employee = new Employee(nome, address, id, payment);
                     
+                    if(type == 1) {
+                        employeeList[id] = new Hourly(name, address, id, payment);
+                    } else {
+                        if(comissioned == 1) {
+                            employeeList[id] = new Comissioned(name, address, id, payment, 1, 1, null);
+                        } else {
+                            employeeList[id] = new Salaried(name, address, id, payment, 1);
+                        }
+                    }
+
                     System.out.println("Empregado adicionado!\n");
-                    System.out.println(employee.showEmployeeInfo());
+                    System.out.println(employeeList[id].showEmployeeInfo());
                     break;
                 case 2:
-                    System.out.println("Insira o nº do empregado que deseja remover...");
+                    /* System.out.println("Insira o nº do empregado que deseja remover...");
                     id = input.nextInt();
                     System.out.println("Removendo empregado " + id);
                     if (empregados[id] == true) {
@@ -61,7 +85,7 @@ public class Main {
                         System.out.println("Empregado removido!\n");
                         break;
                     }
-                    System.out.println("Empregado não encontrado!\n");
+                    System.out.println("Empregado não encontrado!\n"); */
                     break;
                 case 3:
                     id = randInt.nextInt(500);
@@ -98,11 +122,13 @@ public class Main {
                     break;
                 case 11:
                     System.out.println("Saindo...\n");
+                    input.close();
                     return;
                 default:
                     System.out.println("COMANDO INVALIDO\n");
                     break;
             }
         }
+
     }
 }

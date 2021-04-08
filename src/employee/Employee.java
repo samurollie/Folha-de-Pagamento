@@ -1,25 +1,29 @@
 package src.employee;
 
-public class Employee {
-    private String name;
-    private String adress;
-    private int card;
-    private String paymentMethod;
+public abstract class Employee {
+    protected String name;
+    protected String adress;
+    protected int card;
+    protected String paymentMethod;
+    public static int quantity = 0;
 
-    public Employee(String name, String adress, int card, String paymentMethod) {
+    public Employee(String name, String adress, int card, int paymentMethod) {
         this.name = name;
         this.adress = adress;
         this.card = card;
-        this.paymentMethod = paymentMethod;
+        this.setPaymentMethod(paymentMethod);
+        quantity++;
     }
 
-    public String showEmployeeInfo() {
-        return "Nome: " + this.name + "\nEndereco: " + this.adress +"\nNumero do cartao: " + this.card + "\nMetodo de Pagamento: " + this.paymentMethod;
-    }
+    public abstract String showEmployeeInfo();
 
-    public void updatePaymentMethod(String method) {
-        if (method.equals("mãos") || method.equals("depósito") || method.equals("correio")) {
-            this.paymentMethod = method;
+    public void setPaymentMethod(int method) {
+        if (method == 1) {
+            this.paymentMethod = "hand";
+        } else if (method ==  2) {
+            this.paymentMethod = "deposit";
+        } else if (method == 3) {
+            this.paymentMethod = "mail";
         } else {
             System.out.println("Metodo de pagamento inválido!\n");
         }

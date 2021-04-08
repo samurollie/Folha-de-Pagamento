@@ -1,11 +1,11 @@
 package src.employee;
 
-public class SindicatedEmployee extends Employee{
+public class Sindicated extends Employee {
     private double sindicalCharge;
     private double serviceCharge;
     private int sindicalId;
 
-    public SindicatedEmployee(String name, String adress, int card, String paymentMethod, double sindicalCharge, double serviceCharge, int sindicalId) {
+    public Sindicated(String name, String adress, int card, int paymentMethod, double sindicalCharge, double serviceCharge, int sindicalId) {
         super(name, adress, card, paymentMethod);
         this.sindicalCharge = sindicalCharge;
         this.serviceCharge = serviceCharge;
@@ -34,5 +34,10 @@ public class SindicatedEmployee extends Employee{
 
     public void setSindicalCharge(double sindicalCharge) {
         this.sindicalCharge = sindicalCharge;
+    }
+
+    @Override
+    public String showEmployeeInfo() {
+        return "Nome: " + this.name + "\nEndereco: " + this.adress +"\nNumero do cartao: " + this.card + "\nMetodo de Pagamento: " + this.paymentMethod;
     }
 }

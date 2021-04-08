@@ -1,13 +1,11 @@
 package src.employee;
 
-public class HourlyEmplyee extends Employee{
+public class Hourly extends Employee{
     private double workedHours;
     private double serviceCharge;
 
-    public HourlyEmplyee(String name, String adress, int card, String paymentMethod, double workedHours,double serviceCharge) {
+    public Hourly(String name, String adress, int card, int paymentMethod) {
         super(name, adress, card, paymentMethod);
-        this.setWorkedHours(workedHours);
-        this.setServiceCharge(serviceCharge);
     }
 
     public double getServiceCharge() {
@@ -24,5 +22,10 @@ public class HourlyEmplyee extends Employee{
 
     public void setWorkedHours(double workedHours) {
         this.workedHours = workedHours;
+    }
+
+    @Override
+    public String showEmployeeInfo() {
+        return "Nome: " + this.name + "\nEndereco: " + this.adress +"\nNumero do cartao: " + this.card + "\nMetodo de Pagamento: " + this.paymentMethod;
     }
 }
