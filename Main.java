@@ -1,10 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-import src.employee.Comissioned;
-import src.employee.Employee;
-import src.employee.Hourly;
-import src.employee.Salaried;
+import src.employee.*;
 
 public class Main {
     public static void main(String[] args) {
