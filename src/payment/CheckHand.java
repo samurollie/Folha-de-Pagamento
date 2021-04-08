@@ -1,4 +1,4 @@
-package src;
+package src.payment;
 
 public class CheckHand {
     private String employeeName;

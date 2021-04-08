@@ -1,4 +1,4 @@
-package src;
+package src.employee;
 
 public class SalariedEmployee extends Employee{
     private double salary;

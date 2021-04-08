@@ -1,8 +1,7 @@
+import java.util.Random;
 import java.util.Scanner;
 
-import src.Employee;
-
-import java.util.Random;
+import src.employee.Employee;
 
 public class Main {
     public static void main(String[] args) {

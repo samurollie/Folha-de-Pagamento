@@ -1,4 +1,4 @@
-package src;
+package src.employee;
 
 public class SindicatedEmployee extends Employee{
     private double sindicalCharge;

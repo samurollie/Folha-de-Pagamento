@@ -1,4 +1,4 @@
-package src;
+package src.payment;
 
 public class Payroll {
     String[][] dias = new String[500][2]; // Coluna 0 -> nome, coluna 1 -> dia

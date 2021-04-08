@@ -1,4 +1,4 @@
-package src;
+package src.employee;
 
 public class Employee {
     private String name;

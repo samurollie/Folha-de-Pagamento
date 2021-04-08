@@ -1,4 +1,4 @@
-package src;
+package src.payment;
 
 public class CheckMail {
     private String from;

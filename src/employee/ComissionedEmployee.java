@@ -1,4 +1,6 @@
-package src;
+package src.employee;
+
+import src.Sell;
 
 public class ComissionedEmployee extends SalariedEmployee{
     private double comission_percentage;

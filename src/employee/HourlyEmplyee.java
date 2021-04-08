@@ -1,4 +1,4 @@
-package src;
+package src.employee;
 
 public class HourlyEmplyee extends Employee{
     private double workedHours;
