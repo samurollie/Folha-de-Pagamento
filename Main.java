@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Stack;
 
 import src.employee.*;
 
@@ -7,6 +8,8 @@ public class Main {
     public static void main(String[] args) {
         Random randInt = new Random();
         Scanner input = new Scanner(System.in);
+        Stack<Integer> undo = new Stack<>();
+        Stack<Integer> redo = new Stack<>();
         Employee employeeList[] = new Employee[500];
         int id;
 
@@ -25,6 +28,8 @@ public class Main {
             System.out.println("(11) - Sair");
             int cmd = input.nextInt();
             input.nextLine();
+            
+            if (cmd != 8) undo.push(cmd);
 
             switch (cmd) {
             case 1:
@@ -60,7 +65,27 @@ public class Main {
                 System.out.println("Folha de pagamentos gerada!\n");
                 break;
             case 8:
-                System.out.println("Desfazendo ultima ação...\n");
+                System.out.println("(1) - Undo");
+                System.out.println("(2) - Redo");
+                int option = input.nextInt();
+                input.nextLine();
+
+                if (option == 1) {
+                    if (undo.size() > 0) {
+                        System.out.println("Desfazendo ultima ação...\n");
+                        // Adicionar a opção de desfazer a função em si
+                        redo.push(undo.pop());
+                    } else {
+                        System.out.println("Não há nenhuma ação para ser desfeita!");
+                    }
+                } else {
+                    if (redo.size() > 0) {
+                        System.out.println("Refazendo a ultima ação...\n");
+                        undo.push(redo.pop());
+                    } else {
+                        System.out.println("Não há nenhuma ação para ser refeita!");
+                    }
+                }
                 break;
             case 9:
                 id = randInt.nextInt(500);
@@ -81,7 +106,7 @@ public class Main {
                 break;
             }
 
-            System.out.println("Pressione qualquer tecla para continuar...");
+            System.out.println("Pressione ENTER para continuar...");
             input.nextLine();
         }
 
