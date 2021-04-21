@@ -10,7 +10,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         Stack<Integer> undo = new Stack<>();
         Stack<Integer> redo = new Stack<>();
-        Employee employeeList[] = new Employee[500];
+        Employee Employees = new Employee(500);
         int id;
 
         for (;;) {
@@ -33,7 +33,7 @@ public class Main {
 
             switch (cmd) {
             case 1:
-                Employee.add(employeeList);
+                Employees.add();
                 break;
             case 2:
                 /*
