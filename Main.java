@@ -29,7 +29,7 @@ public class Main {
             int cmd = input.nextInt();
             input.nextLine();
             
-            if (cmd != 8) undo.push(cmd);
+            if (cmd <= 7) undo.push(cmd);
 
             switch (cmd) {
             case 1:
