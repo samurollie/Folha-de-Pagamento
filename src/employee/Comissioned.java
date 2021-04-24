@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import src.Sell;
 
 public class Comissioned extends Salaried{
-    private double comission_percentage;
+    private double comissionPercentage;
     private ArrayList<Sell> sells = new ArrayList<Sell>();
     
-    public Comissioned(String name, String adress, int card, int paymentMethod, double salary, double comission_percentage, Sell sells) {
+    public Comissioned(String name, String adress, int card, int paymentMethod, double salary, double comissionPercentage, Sell sells) {
         super(name, adress, card, paymentMethod, salary);
-        this.comission_percentage = comission_percentage;
+        this.comissionPercentage = comissionPercentage;
         this.sells = sells;
     }
 
@@ -19,12 +19,12 @@ public class Comissioned extends Salaried{
         this.sells.add(sell);
     }
 
-    public double getComission_percentage() {
-        return comission_percentage;
+    public double getComissionPercentage() {
+        return comissionPercentage;
     }
 
-    public void setComission_percentage(double comission_percentage) {
-        this.comission_percentage = comission_percentage;
+    public void setComissionPercentage(double comissionPercentage) {
+        this.comissionPercentage = comissionPercentage;
     }
 
     @Override

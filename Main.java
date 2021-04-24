@@ -45,7 +45,8 @@ public class Main {
                  */
                 break;
             case 3:
-                id = randInt.nextInt(500);
+                System.out.println("Insira o id do empregado...");
+                id = input.nextInt();
                 System.out.println("Resgistrando ponto para o empregado " + id);
                 System.out.println("Ponto registrado!\n");
                 break;
