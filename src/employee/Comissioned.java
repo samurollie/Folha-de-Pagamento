@@ -1,24 +1,22 @@
 package src.employee;
 
+import java.util.ArrayList;
+
 import src.Sell;
 
 public class Comissioned extends Salaried{
     private double comission_percentage;
-    private Sell sells; // Array?
+    private ArrayList<Sell> sells = new ArrayList<Sell>();
     
-    public Comissioned(String name, String adress, int card, int paymentMethod, double salary,
-            double comission_percentage, Sell sells) {
+    public Comissioned(String name, String adress, int card, int paymentMethod, double salary, double comission_percentage, Sell sells) {
         super(name, adress, card, paymentMethod, salary);
         this.comission_percentage = comission_percentage;
         this.sells = sells;
     }
-    
-    public Sell getSells() {
-        return sells;
-    }
 
-    public void setSells(Sell sells) {
-        this.sells = sells;
+    public void addSell(int date, double value, String item, int employeeId) {
+        Sell sell = new Sell(date, value, item, employeeId);
+        this.sells.add(sell);
     }
 
     public double getComission_percentage() {
