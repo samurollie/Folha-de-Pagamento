@@ -15,7 +15,7 @@ public class Hourly extends Employee{
         int total = 0;
         for (Timecard timecard : timeCards) {
             System.out.println("Dia: " + timecard.day);
-            System.out.println("Horas Trabahadas: " + timecard.workedHours);
+            System.out.println("Horas Trabalhadas: " + timecard.workedHours);
             System.out.println("#############\n");
             total += timecard.workedHours;
         }
