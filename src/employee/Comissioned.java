@@ -8,10 +8,9 @@ public class Comissioned extends Salaried{
     private double comissionPercentage;
     private ArrayList<Sell> sells = new ArrayList<Sell>();
     
-    public Comissioned(String name, String adress, int card, int paymentMethod, double salary, double comissionPercentage, Sell sells) {
+    public Comissioned(String name, String adress, int card, int paymentMethod, double salary, double comissionPercentage) {
         super(name, adress, card, paymentMethod, salary);
         this.comissionPercentage = comissionPercentage;
-        this.sells = sells;
     }
 
     public void addSell(int date, double value, String item, int employeeId) {
