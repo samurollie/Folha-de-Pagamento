@@ -10,8 +10,12 @@ public class Main {
         Scanner input = new Scanner(System.in);
         Stack<Integer> undo = new Stack<>();
         Stack<Integer> redo = new Stack<>();
-        Employee Employees = new Employee(500);
         int id;
+
+        System.out.println("Insira a quantidade máxima de empregados: ");
+        int maxCapacity = input.nextInt();
+        Employee employees = new Employee(maxCapacity);
+        Syndicate syndicate = new Syndicate(maxCapacity);
 
         for (;;) {
             System.out.println("Selecione uma opção:");
@@ -33,7 +37,15 @@ public class Main {
 
             switch (cmd) {
             case 1:
-                Employees.add();
+                employees.addEmployee();
+                System.out.println("Deseja fazer parte do sindicato?");
+                System.out.println("(1) - Sim");
+                System.out.println("(2) - Não");
+                int isOnSyndicate = input.nextInt();
+
+                if (isOnSyndicate == 1) {
+                    syndicate.addEmployee()
+                }
                 break;
             case 2:
                 /*
