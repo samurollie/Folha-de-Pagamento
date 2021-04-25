@@ -9,10 +9,11 @@ public class Employee {
     protected int card;
     protected String paymentMethod;
     private static Employee employeeList[];
-    // private bool syndicate;
+    private static int maxCapacity;
 
     public Employee(int employeeCount) {
-        Employee.employeeList = new Employee[employeeCount];
+        Employee.maxCapacity = employeeCount;
+        Employee.employeeList = new Employee[Employee.maxCapacity];
     }
     
     public Employee(String name, String adress, int card, int paymentMethod) {
@@ -34,7 +35,7 @@ public class Employee {
         }
     }
 
-    public void add() {
+    public void addEmployee() {
         Random randInt = new Random();
         Scanner input = new Scanner(System.in);
 
@@ -52,9 +53,9 @@ public class Employee {
         int payment = input.nextInt();
 
         System.out.println("Gerando o nº do cartão...");
-        int id = randInt.nextInt(500); // Gera um número aletório de 0 a 500
+        int id = randInt.nextInt(Employee.maxCapacity); // Gera um número aletório de 0 a Employee.maxCapacity
         while (employeeList[id] != null) { // Null = não tem alguem com aql numero
-            id = randInt.nextInt(500);
+            id = randInt.nextInt(Employee.maxCapacity);
         }
 
         System.out.println("Que tipo de empregado " + name + " será?");
@@ -63,19 +64,23 @@ public class Employee {
         int type = input.nextInt();
         
         if (type == 1) {
-            employeeList[id] = new Hourly(name, address, id, payment);
+            System.out.println("Insira o valor do coeficiente salario/hora: ");
+            double hourSalary = input.nextDouble();
+            employeeList[id] = new Hourly(name, address, id, payment, hourSalary);
         } else {
             int comissioned;
             System.out.println("Será um empregado comissionado?");
             System.out.println("(1) - Sim");
             System.out.println("(2) - Não");
             comissioned = input.nextInt();
+            System.out.println("Qual será o salário inicial?");
+            double salary = input.nextDouble();
             
             if (comissioned == 1) {
-                // employeeList[id] = new Comissioned(name, address, id, payment, 1, 1, null);
+                System.out.println("Qual a taxa de comissão?");
+                double taxa = input.nextDouble();
+                employeeList[id] = new Comissioned(name, address, id, payment, salary, taxa);
             } else {
-                System.out.println("Qual será o salário inicial?");
-                double salary = input.nextDouble();
                 employeeList[id] = new Salaried(name, address, id, payment, salary);
             }
         }
@@ -86,7 +91,7 @@ public class Employee {
 
         System.out.println("Empregado adicionado!\n");
         System.out.println(employeeList[id].toString());
-        input.close();
+        input.nextLine();
     }
 
     public void remove(int id) {

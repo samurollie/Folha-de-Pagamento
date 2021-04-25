@@ -6,12 +6,22 @@ import src.Timecard;
 
 public class Hourly extends Employee{
     private ArrayList<Timecard> timeCards = new ArrayList<Timecard>();
+    private double hourSalary;
 
-    public Hourly(String name, String adress, int card, int paymentMethod) {
+    public Hourly(String name, String adress, int card, int paymentMethod, double hourSalary) {
         super(name, adress, card, paymentMethod);
+        this.setHourSalary(hourSalary);
     }
 
-    public void getTimeCards() {
+    public double getHourSalary() {
+        return hourSalary;
+    }
+
+    public void setHourSalary(double hourSalary) {
+        this.hourSalary = hourSalary;
+    }
+
+    public void showTimeCards() {
         int total = 0;
         for (Timecard timecard : timeCards) {
             System.out.println("Dia: " + timecard.day);
