@@ -2,13 +2,13 @@ package src.employee;
 
 public class Employee {
     protected String name;
-    protected String adress;
+    protected String address;
     protected int card;
     protected String paymentMethod;
 
-    public Employee(String name, String adress, int card, int paymentMethod) {
+    public Employee(String name, String address, int card, int paymentMethod) {
         this.name = name;
-        this.adress = adress;
+        this.address = address;
         this.card = card;
         this.setPaymentMethod(paymentMethod);
     }
@@ -25,9 +25,7 @@ public class Employee {
         }
     }
 
-    public void remove(int id) {
-
-
+    public String showEmployeeInfo() {
+        return "########\nNome:" + this.name + "\nEndereço:" + this.address + "\nCard:" + this.card + "\nMétodo de pagameto:" + this.paymentMethod + "\n########";
     }
-
 }

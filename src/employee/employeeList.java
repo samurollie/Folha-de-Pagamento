@@ -13,11 +13,11 @@ public class EmployeeList {
     }
 
     public boolean containsId(int id) {
-        return employees[id] != null;
+        return this.employees[id] != null;
     }
 
     public Employee getEmployee(int index) {
-        return employees[index];
+        return this.employees[index];
     }
 
     public void addEmployee(String name, String address, int id, int payment) {
@@ -29,7 +29,7 @@ public class EmployeeList {
         if (type == 1) {
             System.out.println("Insira o valor do coeficiente salario/hora: ");
             double hourSalary = input.nextDouble();
-            employees[id] = new Hourly(name, address, id, payment, hourSalary);
+            this.employees[id] = new Hourly(name, address, id, payment, hourSalary);
         } else {
             int comissioned;
             System.out.println("Será um empregado comissionado?");
@@ -42,17 +42,16 @@ public class EmployeeList {
             if (comissioned == 1) {
                 System.out.println("Qual a taxa de comissão?");
                 double taxa = input.nextDouble();
-                employees[id] = new Comissioned(name, address, id, payment, salary, taxa);
+                this.employees[id] = new Comissioned(name, address, id, payment, salary, taxa);
             } else {
-                employees[id] = new Salaried(name, address, id, payment, salary);
+                this.employees[id] = new Salaried(name, address, id, payment, salary);
             }
         }
 
         System.out.println("Adicionando empregado " + id);
 
         System.out.println("Empregado adicionado!\n");
-        System.out.println(employees[id].toString());
+        System.out.println(this.employees[id].showEmployeeInfo());
         input.nextLine();
     }
-    
 }

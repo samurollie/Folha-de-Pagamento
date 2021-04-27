@@ -11,7 +11,7 @@ public class Main {
         Stack<Integer> undo = new Stack<>();
         Stack<Integer> redo = new Stack<>();
 
-        System.out.println("Insira a quantidade máxima de empregados: ");
+        System.out.println("Insira a quantidade inicial de empregados: ");
         int maxCapacity = input.nextInt();
         EmployeeList employees = new EmployeeList(maxCapacity);
         Syndicate syndicate = new Syndicate(maxCapacity);
