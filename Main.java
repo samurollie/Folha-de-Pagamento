@@ -10,11 +10,10 @@ public class Main {
         Scanner input = new Scanner(System.in);
         Stack<Integer> undo = new Stack<>();
         Stack<Integer> redo = new Stack<>();
-        int id;
 
         System.out.println("Insira a quantidade máxima de empregados: ");
         int maxCapacity = input.nextInt();
-        Employee employees = new Employee(maxCapacity);
+        EmployeeList employees = new EmployeeList(maxCapacity);
         Syndicate syndicate = new Syndicate(maxCapacity);
 
         for (;;) {
@@ -32,19 +31,39 @@ public class Main {
             System.out.println("(11) - Sair");
             int cmd = input.nextInt();
             input.nextLine();
-            
-            if (cmd <= 7) undo.push(cmd);
+
+            if (cmd <= 7)
+                undo.push(cmd);
 
             switch (cmd) {
             case 1:
-                employees.addEmployee();
+
+                System.out.println("Insira o nome do empregado:");
+                String name = input.nextLine();
+
+                System.out.println("Insira o endereco do empregado:");
+                String address = input.nextLine();
+
+                System.out.println("Como " + name + " deseja receber o seu salário?");
+                System.out.println("(1) - Em mãos");
+                System.out.println("(2) - Depósito bancário");
+                System.out.println("(3) - Cheque pelos correios");
+                int payment = input.nextInt();
+
+                System.out.println("Gerando o nº do cartão...");
+                int id = randInt.nextInt(maxCapacity); // Gera um número aletório de 0 a maxCapacity
+                while (employees.containsId(id)) { // false = não tem alguem com aql numero
+                    id = randInt.nextInt(maxCapacity);
+                }
+                employees.addEmployee(name, address, id, payment);
+
                 System.out.println("Deseja fazer parte do sindicato?");
                 System.out.println("(1) - Sim");
                 System.out.println("(2) - Não");
                 int isOnSyndicate = input.nextInt();
 
                 if (isOnSyndicate == 1) {
-                    syndicate.addEmployee()
+                    syndicate.addEmployee(employees.getEmployee(id));
                 }
                 break;
             case 2:
