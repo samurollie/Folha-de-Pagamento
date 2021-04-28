@@ -1,3 +1,5 @@
+package src;
+
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Stack;
@@ -81,6 +83,7 @@ public class Main {
 
                 System.out.println("Insira o nº de identificação do empregado que deseja remover...");
                 int number = input.nextInt();
+                syndicate.removeEmployee(employees.getEmployee(number));
                 employees.removeEmployee(number);
                 break;
             case 3:
@@ -147,7 +150,9 @@ public class Main {
                             } else if (change == 6) {
                                 
                             } else if (change == 7) {
-
+                                System.out.println("Insira a nova taxa sindical:");
+                                double newSyndicalCharge = input.nextDouble();
+                                syndicate.getSyndicate(employee).setsyndicalCharge(newSyndicalCharge);
                             } else {
                                 System.out.println("Opção inválida!");
                             }

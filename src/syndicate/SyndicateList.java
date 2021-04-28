@@ -28,6 +28,10 @@ public class SyndicateList {
         return employeeList.containsKey(employee);
     }
 
+    public Syndicate getSyndicate(Employee employee) {
+        return employeeList.get(employee);
+    }
+
     public void removeEmployee(Employee employee) {
         if (!employeeList.containsKey(employee)) {
             System.out.println("Esse empregado não faz parte do sindicato!");
