@@ -10,7 +10,8 @@ public class Main {
         Scanner input = new Scanner(System.in);
         Stack<Integer> undo = new Stack<>();
         Stack<Integer> redo = new Stack<>();
-
+        
+        System.out.println("Bem-vindo!");
         System.out.println("Insira a quantidade inicial de empregados: ");
         int maxCapacity = input.nextInt();
         EmployeeList employees = new EmployeeList(maxCapacity);
@@ -37,6 +38,12 @@ public class Main {
 
             switch (cmd) {
             case 1:
+                if (employees.listSize() >= maxCapacity) {
+                    System.out.println("Capacidade máxima de empregados alcançada! Deseja aumentar em quantos empregados?");
+                    int newSize = input.nextInt();
+                    maxCapacity += newSize;
+                    employees.resize(maxCapacity);
+                }
 
                 System.out.println("Insira o nome do empregado:");
                 String name = input.nextLine();
@@ -67,13 +74,10 @@ public class Main {
                 }
                 break;
             case 2:
-                /*
-                 * System.out.println("Insira o nº do empregado que deseja remover..."); id =
-                 * input.nextInt(); System.out.println("Removendo empregado " + id); if
-                 * (empregados[id] == true) { empregados[id] = false;
-                 * System.out.println("Empregado removido!\n"); break; }
-                 * System.out.println("Empregado não encontrado!\n");
-                 */
+                
+                System.out.println("Insira o nº de identificação do empregado que deseja remover..."); 
+                int number = input.nextInt();
+                employees.removeEmployee(number);
                 break;
             case 3:
                 System.out.println("Insira o id do empregado...");
@@ -100,7 +104,6 @@ public class Main {
                 System.out.println("(1) - Undo");
                 System.out.println("(2) - Redo");
                 int option = input.nextInt();
-                input.nextLine();
 
                 if (option == 1) {
                     if (undo.size() > 0) {
@@ -138,6 +141,7 @@ public class Main {
                 break;
             }
 
+            input.nextLine();
             System.out.println("Pressione ENTER para continuar...");
             input.nextLine();
         }

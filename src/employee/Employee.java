@@ -26,6 +26,11 @@ public class Employee {
     }
 
     public String showEmployeeInfo() {
-        return "########\nNome:" + this.name + "\nEndereço:" + this.address + "\nCard:" + this.card + "\nMétodo de pagameto:" + this.paymentMethod + "\n########";
+        return "----------\n"+ 
+        "Nome:" + this.name + 
+        "\nEndereço:" + this.address + 
+        "\nCard:" + this.card + 
+        "\nMétodo de pagamento:" + this.paymentMethod + 
+        "\n----------";
     }
 }

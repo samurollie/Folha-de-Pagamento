@@ -6,18 +6,40 @@ public class EmployeeList {
     private Employee employees[];
     private int maxCapacity;
     private Scanner input = new Scanner(System.in);
+    private static int size;
 
     public EmployeeList(int maxCapacity) {
         this.maxCapacity = maxCapacity;
         this.employees = new Employee[maxCapacity];
+        EmployeeList.size = 0;
     }
 
+    // Função que verifica se existe algum empregado com aquele ID
     public boolean containsId(int id) {
-        return this.employees[id] != null;
+        if (id < maxCapacity && employees[id] != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Employee getEmployee(int index) {
         return this.employees[index];
+    }
+
+    public int listSize() {
+        return EmployeeList.size;
+    }
+    
+    public void resize(int newSize) {
+        System.out.printf("Antigo tamanho: %d\n", this.employees.length);
+        Employee newList[] = new Employee[newSize];
+        for (int i = 0; i < maxCapacity; i++) {
+            newList[i] = this.employees[i];
+        }
+        employees = newList;
+        maxCapacity = newSize;
+        System.out.printf("Novo tamanho: %d\n", this.employees.length);
     }
 
     public void addEmployee(String name, String address, int id, int payment) {
@@ -52,6 +74,17 @@ public class EmployeeList {
 
         System.out.println("Empregado adicionado!\n");
         System.out.println(this.employees[id].showEmployeeInfo());
-        input.nextLine();
+        EmployeeList.size++;
+    }
+
+    public void removeEmployee(int id) {
+        if (containsId(id)) {
+            this.employees[id] = null;
+            EmployeeList.size--;
+
+            System.out.println("Empregado removido!");
+        } else {
+            System.out.println("Não existe nenhum empregado com essa identificação!");
+        }
     }
 }
