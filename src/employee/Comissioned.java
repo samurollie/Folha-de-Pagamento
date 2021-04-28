@@ -33,6 +33,7 @@ public class Comissioned extends Salaried{
         "\nEndereço:" + this.address + 
         "\nCard:" + this.card + 
         "\nMétodo de pagamento:" + this.paymentMethod + 
+        "\nTipo: Comissionado" +
         "\nSalario:" + this.getSalary() +
         "\nPorcentagem de Comissão:" + this.comissionPercentage +
         "\n----------";

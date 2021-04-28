@@ -14,7 +14,7 @@ public class EmployeeList {
         EmployeeList.size = 0;
     }
 
-    // Função que verifica se existe algum empregado com aquele ID
+    /* Função que verifica se existe algum empregado com aquele ID */
     public boolean containsId(int id) {
         if (id < maxCapacity && employees[id] != null) {
             return true;
@@ -58,6 +58,7 @@ public class EmployeeList {
             System.out.println("(1) - Sim");
             System.out.println("(2) - Não");
             comissioned = input.nextInt();
+            
             System.out.println("Qual será o salário inicial?");
             double salary = input.nextDouble();
             

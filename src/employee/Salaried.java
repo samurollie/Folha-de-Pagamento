@@ -23,6 +23,7 @@ public class Salaried extends Employee{
         "\nEndereço:" + this.address + 
         "\nCard:" + this.card + 
         "\nMétodo de pagamento:" + this.paymentMethod + 
+        "\nTipo: Salariado" +
         "\nSalario:" + this.salary +
         "\n----------";
     }

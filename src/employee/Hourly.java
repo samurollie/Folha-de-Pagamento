@@ -45,6 +45,7 @@ public class Hourly extends Employee{
         "\nEndereço:" + this.address + 
         "\nCard:" + this.card + 
         "\nMétodo de pagamento:" + this.paymentMethod + 
+        "\nTipo: Horista"+
         "\nSalario/Hora:" + this.hourSalary +
         "\n----------";
     }
