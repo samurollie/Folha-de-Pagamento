@@ -24,6 +24,19 @@ public class SyndicateList {
         }
     }
 
+    public void changeId(Employee employee) {
+        while(true) {
+            Syndicate syndicate = employeeList.get(employee);
+            boolean exists;
+            employeeList.forEach((key, value) -> {
+                if (value.syndicalId == syndicate.syndicalId) {
+                    exists = true;
+                }
+            });
+            
+        }
+    }
+
     public boolean containsEmployee(Employee employee) {
         return employeeList.containsKey(employee);
     }

@@ -1,4 +1,4 @@
-package src.payment;
+package src.payment.payrolls;
 
 public abstract class Payroll {
     String[][] dias = new String[500][3]; // Coluna 0 -> nome, coluna 1 -> dia, coluna 2 -> Método

@@ -88,4 +88,47 @@ public class EmployeeList {
             System.out.println("Não existe nenhum empregado com essa identificação!");
         }
     }
+
+    public void employeeConversion(int id) {
+        System.out.println("Para qual tipo você deseja converter?");
+        
+        if (employees[id] instanceof Salaried) {
+            Salaried employee = (Salaried) employees[id];
+            
+            System.out.println("(1) - Horista");
+            System.out.println("(2) - Comissionado");
+            int op = input.nextInt();
+
+            if (op == 1) {
+                employees[id] = employees[id].SalariedToHourly(employee);
+            } else {
+                employees[id] = employees[id].SalariedToComissioned(employee);
+            }
+
+        } else if (employees[id] instanceof Hourly) {
+            Hourly employee = (Hourly) employees[id];
+            
+            System.out.println("(1) - Salariado");
+            System.out.println("(2) - Comissionado");
+            int op = input.nextInt();
+
+            if (op == 1) {
+                employees[id] = employees[id].HourlyToSalaried(employee);
+            } else {
+                employees[id] = employees[id].HourlyToComissioned(employee);
+            }
+        } else {
+            Comissioned employee = (Comissioned) employees[id];
+            
+            System.out.println("(1) - Salariado");
+            System.out.println("(2) - Horista");
+            int op = input.nextInt();
+
+            if (op == 1) {
+                employees[id] = employees[id].ComissionedToSalaried(employee);
+            } else {
+                employees[id] = employees[id].ComissionedToHourly(employee);
+            }
+        }
+    }
 }

@@ -135,7 +135,7 @@ public class Main {
                         String newAddress = input.nextLine();
                         employees.getEmployee(id).setAddress(newAddress);
                     } else if (change == 3) {
-
+                        employees.employeeConversion(id);
                     } else if (change == 4) {
                         System.out.println("Selecione um novo método de pagamento:");
                         System.out.println("(1) - Em mãos");
