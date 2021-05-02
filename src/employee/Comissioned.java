@@ -13,9 +13,20 @@ public class Comissioned extends Salaried{
         this.comissionPercentage = comissionPercentage;
     }
 
-    public void addSale(int date, double value, String description, int employeeId) {
+    public void addSale(String date, double value, String description, int employeeId) {
         Sale sale = new Sale(date, value, description, employeeId);
         this.sales.add(sale);
+    }
+
+    public void showSales() {
+        System.out.println("Exibindo as vendas feitas por " + this.name);
+        System.out.println("Porcentagem de comissão: " + comissionPercentage + "%");
+        for (Sale sale : sales) {
+            System.out.println("\n-----------------------\n");
+            System.out.println("Data: " + sale.date);
+            System.out.println("Descrição: " + sale.description);
+            System.out.println("Valor: " + sale.value);
+        }
     }
 
     public double getComissionPercentage() {

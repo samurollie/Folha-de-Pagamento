@@ -93,7 +93,32 @@ public class Main {
                 System.out.println("Ponto registrado!\n");
                 break;
             case 4:
-                System.out.println("Resultado de vendas: Fizemos muitas vendas esse mês :D\n");
+                System.out.println("Insira o nº de identificação do empregado para registrar venda...");
+                id = input.nextInt();
+                input.nextLine();
+
+                if(employees.containsId(id)) {
+                    if(!(employees.getEmployee(id) instanceof Comissioned)) {
+                        System.out.println("O Empregado deve ser do tipo comissionado para cadastrar uma venda!");
+                    } else {
+                        System.out.println("Insira a data em que a venda foi realizada: DD/MM/AAAA HH:MM:SS");
+                        String date = input.nextLine();
+
+                        System.out.println("O que foi vendido?");
+                        String description = input.nextLine();
+
+                        System.out.println("Insira o valor de " + description);
+                        double value = input.nextDouble();
+                        
+                        System.out.println("Cadastrando venda...");
+
+                        ((Comissioned) employees.getEmployee(id)).addSale(date, value, description, id);
+                        ((Comissioned) employees.getEmployee(id)).showSales();
+                    }
+                } else {
+                    System.out.println("Esse empregado não existe!");
+                }
+
                 break;
             case 5:
                 System.out.println("Taxa de serviço: 50%\n");
