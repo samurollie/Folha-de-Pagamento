@@ -1,6 +1,8 @@
 package src.syndicate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 
 import src.employee.Employee;
@@ -8,6 +10,7 @@ import src.employee.Employee;
 public class SyndicateList {
     private HashMap<Employee, Syndicate> employeeList; // Lista dos empregados que fazem parte do sindicato
     private Scanner input = new Scanner(System.in);
+    private Random random = new Random();
 
     public SyndicateList() {
         this.employeeList = new HashMap<Employee, Syndicate>();
@@ -23,18 +26,30 @@ public class SyndicateList {
             System.out.println("Empregado adicionado ao sindicato!");
         }
     }
+    
 
     public void changeId(Employee employee) {
+        ArrayList<Integer> notAvailableIDs = new ArrayList<Integer>();
+        employeeList.forEach((key, value) -> {
+            notAvailableIDs.add(value.syndicalId);
+        });
+        
+        int newId;
         while(true) {
-            Syndicate syndicate = employeeList.get(employee);
-            boolean exists;
-            employeeList.forEach((key, value) -> {
-                if (value.syndicalId == syndicate.syndicalId) {
-                    exists = true;
+            newId = random.nextInt(employeeList.size() + 1);
+            boolean found = false;
+            for (Integer integer : notAvailableIDs) {
+                if (integer.equals(newId)) {
+                    found = true;
                 }
-            });
-            
+            }
+            if (!found) {
+                break;
+            }
         }
+
+        employeeList.get(employee).setsyndicalId(newId);
+        System.out.println("Novo ID gerado: " + newId);
     }
 
     public boolean containsEmployee(Employee employee) {

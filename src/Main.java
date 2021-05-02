@@ -102,76 +102,81 @@ public class Main {
                 System.out.println("Insira o nº de identificação do empregado que deseja alterar algum dado...");
                 id = input.nextInt();
 
-                while (true) {
-                    Employee employee = employees.getEmployee(id);
-                    System.out.println("Exibindo dados do empregado " + employee.getName());
-                    System.out.println(employee.showEmployeeInfo());
-
-                    if (syndicate.containsEmployee(employee)) {
-                        System.out.println("Esse empregado faz parte do Sindicato");
-                    } else {
-                        System.out.println("Esse empregado não faz parte do Sindicato");
-                    }
-
-                    System.out.println("O que você deseja alterar?");
-                    System.out.println("(1) - Nome             (2) - Endereço");
-                    System.out.println("(3) - Tipo             (4) - Método de Pagamento");
-
-                    if (syndicate.containsEmployee(employee)) {
-                        System.out.println("(5) - Remover do Sindicato");
-                        System.out.println("(6) - Id no Sindicato  (7) - Taxa Sindical");
-                    } else {
-                        System.out.println("(5) - Adicionar ao Sindicato");
-                    }
-
-                    int change = input.nextInt();
-
-                    if (change == 1) {
-                        System.out.println("Insira o novo nome:");
-                        String newName = input.nextLine();
-                        employees.getEmployee(id).setName(newName);
-                    } else if (change == 2) {
-                        System.out.println("Insira o novo Endereço:");
-                        String newAddress = input.nextLine();
-                        employees.getEmployee(id).setAddress(newAddress);
-                    } else if (change == 3) {
-                        employees.employeeConversion(id);
-                    } else if (change == 4) {
-                        System.out.println("Selecione um novo método de pagamento:");
-                        System.out.println("(1) - Em mãos");
-                        System.out.println("(2) - Depósito bancário");
-                        System.out.println("(3) - Cheque pelos correios");
-                        int newPayment = input.nextInt();
-                        employees.getEmployee(id).setPaymentMethod(newPayment);
-                    } else {
-                        if (syndicate.containsEmployee(employees.getEmployee(id))) {
-                            if(change == 5) {
-                                syndicate.removeEmployee(employee);
-                            } else if (change == 6) {
-                                
-                            } else if (change == 7) {
-                                System.out.println("Insira a nova taxa sindical:");
-                                double newSyndicalCharge = input.nextDouble();
-                                syndicate.getSyndicate(employee).setsyndicalCharge(newSyndicalCharge);
+                if (employees.containsId(id)) {
+                    while (true) {
+                        Employee employee = employees.getEmployee(id);
+                        System.out.println("Exibindo dados do empregado " + employee.getName());
+                        System.out.println(employee.showEmployeeInfo());
+    
+                        if (syndicate.containsEmployee(employee)) {
+                            System.out.println("Esse empregado faz parte do Sindicato");
+                        } else {
+                            System.out.println("Esse empregado não faz parte do Sindicato");
+                        }
+    
+                        System.out.println("\nO que você deseja alterar?");
+                        System.out.println("(1) - Nome             (2) - Endereço");
+                        System.out.println("(3) - Tipo             (4) - Método de Pagamento");
+    
+                        if (syndicate.containsEmployee(employee)) {
+                            System.out.println("(5) - Remover do Sindicato");
+                            System.out.println("(6) - Id no Sindicato  (7) - Taxa Sindical");
+                        } else {
+                            System.out.println("(5) - Adicionar ao Sindicato");
+                        }
+    
+                        int change = input.nextInt();
+                        input.nextLine();
+    
+                        if (change == 1) {
+                            System.out.println("Insira o novo nome:");
+                            String newName = input.nextLine();
+                            employees.getEmployee(id).setName(newName);
+                        } else if (change == 2) {
+                            System.out.println("Insira o novo Endereço:");
+                            String newAddress = input.nextLine();
+                            employees.getEmployee(id).setAddress(newAddress);
+                        } else if (change == 3) {
+                            employees.employeeConversion(id);
+                        } else if (change == 4) {
+                            System.out.println("Selecione um novo método de pagamento:");
+                            System.out.println("(1) - Em mãos");
+                            System.out.println("(2) - Depósito bancário");
+                            System.out.println("(3) - Cheque pelos correios");
+                            int newPayment = input.nextInt();
+                            employees.getEmployee(id).setPaymentMethod(newPayment);
+                        } else {
+                            if (syndicate.containsEmployee(employees.getEmployee(id))) {
+                                if(change == 5) {
+                                    syndicate.removeEmployee(employee);
+                                } else if (change == 6) {
+                                    syndicate.changeId(employee);
+                                } else if (change == 7) {
+                                    System.out.println("Insira a nova taxa sindical:");
+                                    double newSyndicalCharge = input.nextDouble();
+                                    syndicate.getSyndicate(employee).setsyndicalCharge(newSyndicalCharge);
+                                } else {
+                                    System.out.println("Opção inválida!");
+                                }
+                            } else if (change == 5) { // Se ele nao tiver na lista e change for igual a 5, é pra adicionar
+                                syndicate.addEmployee(employees.getEmployee(id));
                             } else {
                                 System.out.println("Opção inválida!");
                             }
-                        } else if (change == 5) { // Se ele nao tiver na lista e change for igual a 5, é pra adicionar
-                            syndicate.addEmployee(employees.getEmployee(id));
-                        } else {
-                            System.out.println("Opção inválida!");
+                        }
+    
+                        System.out.println("Dados alterados! \n");
+                        System.out.println("Deseja alterar mais alguma coisa?");
+                        System.out.println("(1) - Sim");
+                        System.out.println("(2) - Não");
+                        int continuar = input.nextInt();
+    
+                        if (continuar == 2) {
+                            break;
                         }
                     }
-
-                    System.out.println("Dados alterados! \n");
-                    System.out.println("Deseja alterar mais alguma coisa?");
-                    System.out.println("(1) - Sim");
-                    System.out.println("(2) - Não");
-                    int continuar = input.nextInt();
-
-                    if (continuar == 2) {
-                        break;
-                    }
+                } else {
+                    System.out.println("Esse empregado não existe!");
                 }
 
                 break;
