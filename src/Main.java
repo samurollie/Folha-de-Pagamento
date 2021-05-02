@@ -5,14 +5,13 @@ import java.util.Scanner;
 import java.util.Stack;
 
 import src.employee.*;
+import src.historic.Historic;
 import src.syndicate.*;
 
 public class Main {
     public static void main(String[] args) {
         Random randInt = new Random();
         Scanner input = new Scanner(System.in);
-        Stack<Integer> undo = new Stack<>();
-        Stack<Integer> redo = new Stack<>();
 
         System.out.println("Bem-vindo!");
         System.out.println("Insira a quantidade inicial de empregados: ");
@@ -20,6 +19,11 @@ public class Main {
         EmployeeList employees = new EmployeeList(maxCapacity);
 
         SyndicateList syndicate = new SyndicateList();
+
+        Historic<Employee> historicEmployees = new Historic<Employee>();
+        Historic<Syndicate> historicSyndicate = new Historic<Syndicate>();
+        Historic<Integer> historicActions = new Historic<Integer>();
+
 
         for (;;) {
             System.out.println("Selecione uma opção:");

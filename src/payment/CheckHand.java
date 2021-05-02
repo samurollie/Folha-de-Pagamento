@@ -1,18 +1,57 @@
 package src.payment;
 
 public class CheckHand {
-    private String employeeName;
+    private int number;
+    private double value;
+    private String destination;
+    private String location;
+    private String date;
 
-    public CheckHand(String employeeName) {
-        this.setEmployeeName(employeeName);
+    public CheckHand(int number, double value, String destination, String location, String date) {
+        this.setNumber(number);
+        this.setValue(value);
+        this.setDestination(destination);
+        this.setLocation(location);
+        this.setDate(date);
     }
 
-    public String getEmployeeName() {
-        return employeeName;
+    public String getDate() {
+        return date;
     }
 
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
+    public void setDate(String date) {
+        this.date = date;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 }

@@ -3,24 +3,36 @@ package src.payment;
 public class Deposit {
     private int agencyNumber;
     private int accountNumber;
-    private int bank;
-    
-    public Deposit(int agencyNumber, int accountNumber, int bank) {
-        this.setAgencyNumber(agencyNumber);
-        this.setAccountNumber(accountNumber);
-        this.setBank(bank); 
-    }
-
-    public int getBank() {
-        return bank;
-    }
-
-    public void setBank(int bank) {
-        this.bank = bank;
-    }
+    private int bankNumber;
+    private double value;
+    private String cpf;
 
     public int getAccountNumber() {
         return accountNumber;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public int getBankNumber() {
+        return bankNumber;
+    }
+
+    public void setBankNumber(int bankNumber) {
+        this.bankNumber = bankNumber;
     }
 
     public void setAccountNumber(int accountNumber) {
