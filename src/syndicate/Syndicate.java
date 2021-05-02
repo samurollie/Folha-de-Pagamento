@@ -2,17 +2,19 @@ package src.syndicate;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Syndicate {
     protected double syndicalCharge;
-    protected ArrayList<Double> extraCharges;
+    protected ArrayList<ServiceCharge> serviceCharges;
     protected int syndicalId;
     private Random random = new Random();
+    private Scanner input = new Scanner(System.in);
 
     public Syndicate(double syndicalCharge, int syndicalId) {
         this.syndicalCharge = syndicalCharge;
         this.syndicalId = syndicalId;
-        this.extraCharges = new ArrayList<Double>();
+        this.serviceCharges = new ArrayList<ServiceCharge>();
     }
 
     public int getsyndicalId() {
@@ -33,6 +35,19 @@ public class Syndicate {
 
     public void setsyndicalCharge(double syndicalCharge) {
         this.syndicalCharge = syndicalCharge;
+    }
+
+    public void addServiceCharge() {
+        System.out.println("Insira a Porcentagem: ");
+        double value = input.nextDouble();
+        input.nextLine();
+
+        System.out.println("Insira a descrição dessa taxa: ");
+        String description = input.nextLine();
+
+        serviceCharges.add(new ServiceCharge(value, description));
+
+        System.out.println("Taxa adicionada!");
     }
 
     @Override

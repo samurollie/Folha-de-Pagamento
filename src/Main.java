@@ -121,7 +121,14 @@ public class Main {
 
                 break;
             case 5:
-                System.out.println("Taxa de serviço: 50%\n");
+                System.out.println("Insira o nº de identificacao do empregado que deseja adicionar uma taxa:");
+                id = input.nextInt();
+
+                if (syndicate.containsEmployee(employees.getEmployee(id))) {
+                    syndicate.addSyndicalCharge(employees.getEmployee(id));
+                } else {
+                    System.out.println("Esse empregado deve estar no sindicato para adicionar uma taxa!");
+                }
                 break;
             case 6:
                 System.out.println("Insira o nº de identificação do empregado que deseja alterar algum dado...");

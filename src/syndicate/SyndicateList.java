@@ -15,7 +15,15 @@ public class SyndicateList {
     public SyndicateList() {
         this.employeeList = new HashMap<Employee, Syndicate>();
     }
-
+    
+    public void removeEmployee(Employee employee) {
+        if (!employeeList.containsKey(employee)) {
+            System.out.println("Esse empregado não faz parte do sindicato!");
+        } else {
+            employeeList.remove(employee);
+        }
+    }
+    
     public void addEmployee(Employee employee) {
         if (employeeList.containsKey(employee)) {
             System.out.println("Esse empregado já faz parte do sindicato!");
@@ -26,7 +34,10 @@ public class SyndicateList {
             System.out.println("Empregado adicionado ao sindicato!");
         }
     }
-    
+
+    public boolean containsEmployee(Employee employee) {
+        return employeeList.containsKey(employee);
+    }
 
     public void changeId(Employee employee) {
         ArrayList<Integer> notAvailableIDs = new ArrayList<Integer>();
@@ -52,20 +63,12 @@ public class SyndicateList {
         System.out.println("Novo ID gerado: " + newId);
     }
 
-    public boolean containsEmployee(Employee employee) {
-        return employeeList.containsKey(employee);
-    }
-
     public Syndicate getSyndicate(Employee employee) {
         return employeeList.get(employee);
     }
 
-    public void removeEmployee(Employee employee) {
-        if (!employeeList.containsKey(employee)) {
-            System.out.println("Esse empregado não faz parte do sindicato!");
-        } else {
-            employeeList.remove(employee);
-        }
+    public void addSyndicalCharge(Employee employee) {
+        employeeList.get(employee).addServiceCharge();
     }
 
     public String showInfoOnSyndicate(Employee employee) {
