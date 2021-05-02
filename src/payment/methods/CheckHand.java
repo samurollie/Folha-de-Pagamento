@@ -1,4 +1,4 @@
-package src.payment;
+package src.payment.methods;
 
 public class CheckHand {
     private int number;

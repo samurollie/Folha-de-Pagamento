@@ -14,6 +14,17 @@ public class EmployeeList {
         EmployeeList.size = 0;
     }
 
+    public void showAllEmployees() {
+        for (Employee employee : employees) {
+            if (employee == null) 
+                continue;
+            
+            System.out.println("\n");
+            System.out.println(employee.showEmployeeInfo());
+            System.out.println("\n");
+        }
+    }
+
     /* Função que verifica se existe algum empregado com aquele ID */
     public boolean containsId(int id) {
         if (id < maxCapacity && employees[id] != null) {

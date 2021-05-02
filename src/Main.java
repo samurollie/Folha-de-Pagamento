@@ -6,23 +6,22 @@ import java.util.Stack;
 
 import src.employee.*;
 import src.historic.Historic;
+import src.historic.HistoricControll;
 import src.syndicate.*;
 
 public class Main {
     public static void main(String[] args) {
         Random randInt = new Random();
         Scanner input = new Scanner(System.in);
+        HistoricControll historic = new HistoricControll();
 
         System.out.println("Bem-vindo!");
         System.out.println("Insira a quantidade inicial de empregados: ");
         int maxCapacity = input.nextInt();
-        EmployeeList employees = new EmployeeList(maxCapacity);
 
+        EmployeeList employees = new EmployeeList(maxCapacity);
         SyndicateList syndicate = new SyndicateList();
 
-        Historic<Employee> historicEmployees = new Historic<Employee>();
-        Historic<Syndicate> historicSyndicate = new Historic<Syndicate>();
-        Historic<Integer> historicActions = new Historic<Integer>();
 
         for (;;) {
             System.out.println("Selecione uma opção:");
@@ -40,8 +39,12 @@ public class Main {
             int cmd = input.nextInt();
             input.nextLine();
 
-            if (cmd <= 7)
-                undo.push(cmd);
+            if (cmd <= 7){
+                System.out.println("Adicionando a ação: " + cmd);
+                EmployeeList aux = employees;
+                SyndicateList aux2 = syndicate;
+                historic.addAction(cmd, aux, aux2);
+            }
 
             switch (cmd) {
             case 1:
@@ -225,19 +228,27 @@ public class Main {
                 int option = input.nextInt();
 
                 if (option == 1) {
-                    if (undo.size() > 0) {
-                        System.out.println("Desfazendo ultima ação...\n");
-                        // Adicionar a opção de desfazer a função em si
-                        redo.push(undo.pop());
-                    } else {
-                        System.out.println("Não há nenhuma ação para ser desfeita!");
+                    int lastAction = historic.undoAction();
+                    System.out.printf("\nLast Action: %d\n", lastAction);
+
+                    if (lastAction == 1 || lastAction == 2 || lastAction == 3 || lastAction == 4 || lastAction == 6) {
+                        System.out.println("Employees antes: " + employees.listSize());
+                        employees.showAllEmployees();
+
+                        employees = historic.undoEmployeeList();
+
+                        System.out.println("Employees depois: " + employees.listSize());
+                        employees.showAllEmployees();
+                    } else if (lastAction == 5) {
+                        syndicate = historic.undoSyndicateList();
                     }
                 } else {
-                    if (redo.size() > 0) {
-                        System.out.println("Refazendo a ultima ação...\n");
-                        undo.push(redo.pop());
-                    } else {
-                        System.out.println("Não há nenhuma ação para ser refeita!");
+                    int lastAction = historic.redoAction();
+
+                    if (lastAction == 1 || lastAction == 2 || lastAction == 3 || lastAction == 4 || lastAction == 6) {
+                        employees = historic.redoEmployeeList();
+                    } else if (lastAction == 5) {
+                        syndicate = historic.redoSyndicateList();
                     }
                 }
                 break;
