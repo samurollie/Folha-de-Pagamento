@@ -2,6 +2,8 @@ package src.employee;
 
 import java.util.Scanner;
 
+import src.Sale;
+
 public class EmployeeList {
     private Employee employees[];
     private int maxCapacity;
@@ -12,6 +14,39 @@ public class EmployeeList {
         this.maxCapacity = maxCapacity;
         this.employees = new Employee[maxCapacity];
         EmployeeList.size = 0;
+    }
+
+    public static EmployeeList copy(EmployeeList employeeList) {
+        EmployeeList newList = new EmployeeList(employeeList.maxCapacity);
+        for(int i = 0; i < employeeList.employees.length; i++) {
+            
+            if (employeeList.employees[i] == null) {
+                continue;
+            }
+
+            if (employeeList.employees[i] instanceof Hourly) {
+                Hourly aux = (Hourly)employeeList.employees[i];
+
+                newList.employees[i] = new Hourly(aux.name, aux.address, aux.card, aux.getPaymentMethod(), aux.getHourSalary());
+
+            } else if (employeeList.employees[i] instanceof Comissioned) {
+                Comissioned aux = (Comissioned)employeeList.employees[i];
+
+                newList.employees[i] = new Comissioned(aux.name, aux.address, aux.card, aux.getPaymentMethod(), aux.getSalary(), aux.getComissionPercentage());
+
+                if (aux.hasSales()) {
+                    for (Sale sale : aux.getSales()) {
+                        ((Comissioned)newList.employees[i]).addSale(sale.date, sale.value, sale.description, sale.employeeId);
+                    }
+                }
+            } else {
+                Salaried aux = (Salaried)employeeList.employees[i];
+
+                newList.employees[i] = new Salaried(aux.name, aux.address, aux.card, aux.getPaymentMethod(), aux.getSalary());
+            }
+        }
+
+        return newList;
     }
 
     public void showAllEmployees() {

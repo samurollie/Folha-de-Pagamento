@@ -2,12 +2,12 @@ package src;
 
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Stack;
 
-import src.employee.*;
-import src.historic.Historic;
+import src.employee.Comissioned;
+import src.employee.Employee;
+import src.employee.EmployeeList;
 import src.historic.HistoricControll;
-import src.syndicate.*;
+import src.syndicate.SyndicateList;
 
 public class Main {
     public static void main(String[] args) {
@@ -41,8 +41,8 @@ public class Main {
 
             if (cmd <= 7){
                 System.out.println("Adicionando a ação: " + cmd);
-                EmployeeList aux = employees;
-                SyndicateList aux2 = syndicate;
+                EmployeeList aux = EmployeeList.copy(employees);
+                SyndicateList aux2 = new SyndicateList(syndicate);
                 historic.addAction(cmd, aux, aux2);
             }
 
@@ -235,7 +235,11 @@ public class Main {
                         System.out.println("Employees antes: " + employees.listSize());
                         employees.showAllEmployees();
 
-                        employees = historic.undoEmployeeList();
+                        System.out.println("A lista la do historico:");
+                        EmployeeList aaaa = historic.undoEmployeeList();
+                        aaaa.showAllEmployees();
+
+                        employees = aaaa;
 
                         System.out.println("Employees depois: " + employees.listSize());
                         employees.showAllEmployees();

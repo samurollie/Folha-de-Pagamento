@@ -28,6 +28,16 @@ public class Employee {
         }
     }
 
+    public int getPaymentMethod() {
+        if (this.paymentMethod.equals("hand")) {
+            return 1;
+        } else if (this.paymentMethod.equals("deposit")) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
+
     public String getName() {
         return this.name;
     }

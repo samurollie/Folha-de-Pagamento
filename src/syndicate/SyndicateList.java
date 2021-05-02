@@ -16,6 +16,10 @@ public class SyndicateList {
         this.employeeList = new HashMap<Employee, Syndicate>();
     }
     
+    public SyndicateList(SyndicateList syndicateList) {
+        this.employeeList = syndicateList.employeeList;
+    }
+
     public void removeEmployee(Employee employee) {
         if (!employeeList.containsKey(employee)) {
             System.out.println("Esse empregado não faz parte do sindicato!");

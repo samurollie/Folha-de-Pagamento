@@ -14,7 +14,7 @@ public class Comissioned extends Salaried{
     }
 
     public void addSale(String date, double value, String description, int employeeId) {
-        Sale sale = new Sale(date, value, description, employeeId);
+        Sale sale = new Sale(date, value, description, employeeId); 
         this.sales.add(sale);
     }
 
@@ -35,6 +35,14 @@ public class Comissioned extends Salaried{
 
     public void setComissionPercentage(double comissionPercentage) {
         this.comissionPercentage = comissionPercentage;
+    }
+
+    public boolean hasSales() {
+        return !sales.isEmpty();
+    }
+
+    public ArrayList<Sale> getSales() {
+        return this.sales;
     }
 
     @Override
