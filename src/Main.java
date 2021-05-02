@@ -24,7 +24,6 @@ public class Main {
         Historic<Syndicate> historicSyndicate = new Historic<Syndicate>();
         Historic<Integer> historicActions = new Historic<Integer>();
 
-
         for (;;) {
             System.out.println("Selecione uma opção:");
             System.out.println("(1) - Adicionar Empregado");
