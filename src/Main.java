@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 import src.employee.*;
+import src.historic.Historic;
 import src.syndicate.*;
 
 public class Main {
@@ -20,6 +21,9 @@ public class Main {
         EmployeeList employees = new EmployeeList(maxCapacity);
 
         SyndicateList syndicate = new SyndicateList();
+
+        Historic<Employee> historicEmployees = new Historic<Employee>();
+        Historic<Syndicate> hisyoticSyndicate = new Historic<Syndicate>();
 
         for (;;) {
             System.out.println("Selecione uma opção:");
