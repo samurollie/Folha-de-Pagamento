@@ -1,12 +1,15 @@
 package src.employee;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import src.Timecard;
+import src.utilities.Timecard;
 
 public class Hourly extends Employee{
     private ArrayList<Timecard> timeCards = new ArrayList<Timecard>();
     private double hourSalary;
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 
     public Hourly(String name, String adress, int card, int paymentMethod, double hourSalary) {
         super(name, adress, card, paymentMethod);
@@ -24,18 +27,24 @@ public class Hourly extends Employee{
     public void showTimeCards() {
         int total = 0;
         for (Timecard timecard : timeCards) {
-            System.out.println("Dia: " + timecard.day);
+            System.out.println("Dia: " + timecard.entry.getDay());
             System.out.println("Horas Trabalhadas: " + timecard.workedHours);
             System.out.println("#############\n");
+
             total += timecard.workedHours;
         }
 
         System.out.println("Total de horas trabalhadas: " + total);
     }
 
-    public void setTimeCards(int workedHours, String day) {
-        Timecard timeCard = new Timecard(workedHours, day);
-        this.timeCards.add(timeCard);
+    public void setTimeCards(String entry, String exit) {
+        Timecard timeCard;
+        try {
+            timeCard = new Timecard(formatter.parse(entry), formatter.parse(exit));
+            this.timeCards.add(timeCard);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

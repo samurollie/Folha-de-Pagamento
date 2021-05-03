@@ -7,12 +7,8 @@ public class CheckHand {
     private String location;
     private String date;
 
-    public CheckHand(int number, double value, String destination, String location, String date) {
-        this.setNumber(number);
-        this.setValue(value);
+    public CheckHand(String destination) {
         this.setDestination(destination);
-        this.setLocation(location);
-        this.setDate(date);
     }
 
     public String getDate() {

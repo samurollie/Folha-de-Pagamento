@@ -2,7 +2,7 @@ package src.employee;
 
 import java.util.Scanner;
 
-import src.Sale;
+import src.utilities.Sale;
 
 public class EmployeeList {
     private Employee employees[];

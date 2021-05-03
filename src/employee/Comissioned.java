@@ -1,8 +1,9 @@
 package src.employee;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-import src.Sale;
+import src.utilities.Sale;
 
 public class Comissioned extends Salaried{
     private double comissionPercentage;
@@ -13,7 +14,7 @@ public class Comissioned extends Salaried{
         this.comissionPercentage = comissionPercentage;
     }
 
-    public void addSale(String date, double value, String description, int employeeId) {
+    public void addSale(Date date, double value, String description, int employeeId) {
         Sale sale = new Sale(date, value, description, employeeId); 
         this.sales.add(sale);
     }

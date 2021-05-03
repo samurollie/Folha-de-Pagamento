@@ -1,11 +1,16 @@
 package src;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
 import src.employee.Comissioned;
 import src.employee.Employee;
 import src.employee.EmployeeList;
+import src.employee.Hourly;
 import src.historic.HistoricControll;
 import src.syndicate.SyndicateList;
 
@@ -14,14 +19,15 @@ public class Main {
         Random randInt = new Random();
         Scanner input = new Scanner(System.in);
         HistoricControll historic = new HistoricControll();
+        Calendar calendar = Calendar.getInstance();
+        Locale local = new Locale("pt", "BR");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 
         System.out.println("Bem-vindo!");
         System.out.println("Insira a quantidade inicial de empregados: ");
         int maxCapacity = input.nextInt();
-
         EmployeeList employees = new EmployeeList(maxCapacity);
         SyndicateList syndicate = new SyndicateList();
-
 
         for (;;) {
             System.out.println("Selecione uma opção:");
@@ -95,7 +101,19 @@ public class Main {
             case 3:
                 System.out.println("Insira o id do empregado...");
                 id = input.nextInt();
-                System.out.println("Resgistrando ponto para o empregado " + id);
+                input.nextLine();
+
+                if(employees.containsId(id) && employees.getEmployee(id) instanceof Hourly) {
+                    System.out.println("Insira a hora de entrada no formato dd/MM/yyyy hh:mm:ss");
+                    String entry = input.nextLine();
+
+                    System.out.println("Insira a hora de saida no formato dd/MM/yyyy hh:mm:ss");
+                    String exit = input.nextLine();
+
+                    ((Hourly)employees.getEmployee(id)).setTimeCards(entry, exit);
+                    ((Hourly)employees.getEmployee(id)).showTimeCards();
+                }
+                
                 System.out.println("Ponto registrado!\n");
                 break;
             case 4:
@@ -118,8 +136,13 @@ public class Main {
                         
                         System.out.println("Cadastrando venda...");
 
-                        ((Comissioned) employees.getEmployee(id)).addSale(date, value, description, id);
-                        ((Comissioned) employees.getEmployee(id)).showSales();
+                        try {
+                            ((Comissioned) employees.getEmployee(id)).addSale(formatter.parse(date), value, description, id);
+                            ((Comissioned) employees.getEmployee(id)).showSales();
+                        } catch (ParseException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
                     }
                 } else {
                     System.out.println("Esse empregado não existe!");
@@ -236,10 +259,10 @@ public class Main {
                         employees.showAllEmployees();
 
                         System.out.println("A lista la do historico:");
-                        EmployeeList aaaa = historic.undoEmployeeList();
-                        aaaa.showAllEmployees();
+                        EmployeeList temp = historic.undoEmployeeList();
+                        temp.showAllEmployees();
 
-                        employees = aaaa;
+                        employees = temp;
 
                         System.out.println("Employees depois: " + employees.listSize());
                         employees.showAllEmployees();

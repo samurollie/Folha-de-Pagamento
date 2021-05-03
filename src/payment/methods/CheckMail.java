@@ -8,7 +8,7 @@ public class CheckMail extends CheckHand{
     
     public CheckMail(int number, double value, String destination, String location, String date, String from, String to,
             String cep, String address) {
-        super(number, value, destination, location, date);
+        super(destination);
         this.setFrom(from);
         this.setTo(to);
         this.setCep(cep);
