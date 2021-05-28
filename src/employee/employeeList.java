@@ -6,6 +6,9 @@ import src.utilities.Sale;
 
 public class EmployeeList {
     private Employee employees[];
+    /* private Salaried salaried[];
+    private Hourly hourly[];
+    private Comissioned comissioned[]; */
     private int maxCapacity;
     private Scanner input = new Scanner(System.in);
     private static int size;
@@ -13,6 +16,9 @@ public class EmployeeList {
     public EmployeeList(int maxCapacity) {
         this.maxCapacity = maxCapacity;
         this.employees = new Employee[maxCapacity];
+        /* this.salaried = new Salaried[maxCapacity];
+        this.comissioned = new Comissioned[maxCapacity];
+        this.hourly = new Hourly[maxCapacity]; */
         EmployeeList.size = 0;
     }
 
@@ -62,7 +68,7 @@ public class EmployeeList {
 
     /* Função que verifica se existe algum empregado com aquele ID */
     public boolean containsId(int id) {
-        if (id < maxCapacity && employees[id] != null) {
+        if (getEmployee(id) != null) {
             return true;
         } else {
             return false;
@@ -70,6 +76,15 @@ public class EmployeeList {
     }
 
     public Employee getEmployee(int index) {
+        /* if (this.hourly[index] != null) {
+            return this.hourly[index];
+        } else if (this.comissioned[index] != null) {
+            return this.comissioned[index];
+        } else if (this.salaried[index] != null) {
+            return this.salaried[index];
+        } else {
+            return null;
+        } */
         return this.employees[index];
     }
 
