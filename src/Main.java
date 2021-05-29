@@ -51,11 +51,13 @@ public class Main {
                 EmployeeList aux = EmployeeList.copy(employees);
                 SyndicateList aux2 = new SyndicateList(syndicate);
                 historic.addAction(cmd, aux, aux2);
+                historic.showStatus();
             }
 
             switch (cmd) {
             case 1:
-                if (employees.listSize() >= maxCapacity) {
+                System.out.println("list size:" + EmployeeList.size);
+                if (EmployeeList.size >= maxCapacity) {
                     System.out.println(
                             "Capacidade máxima de empregados alcançada! Deseja aumentar em quantos empregados?");
                     int newSize = readInt(input);
@@ -186,7 +188,6 @@ public class Main {
                         }
     
                         int change = readInt(input);
-                        input.nextLine();
     
                         if (change == 1) {
                             System.out.println("Insira o novo nome:");
@@ -254,17 +255,17 @@ public class Main {
                     System.out.printf("\nLast Action: %d\n", lastAction);
 
                     if (lastAction == 1 || lastAction == 2 || lastAction == 3 || lastAction == 4 || lastAction == 6) {
-                        System.out.println("Employees antes: " + employees.listSize());
-                        employees.showAllEmployees();
+                        System.out.println("Employees antes: " + EmployeeList.size);
+                        employees.showAll();
 
                         System.out.println("A lista la do historico:");
                         EmployeeList temp = historic.undoEmployeeList();
-                        temp.showAllEmployees();
+                        temp.showAll();
 
                         employees = temp;
 
-                        System.out.println("Employees depois: " + employees.listSize());
-                        employees.showAllEmployees();
+                        System.out.println("Employees depois: " + EmployeeList.size);
+                        employees.showAll();
                     } else if (lastAction == 5) {
                         syndicate = historic.undoSyndicateList();
                     }

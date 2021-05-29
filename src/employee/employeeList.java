@@ -11,7 +11,7 @@ public class EmployeeList {
     private Comissioned comissioned[]; */
     private int maxCapacity;
     private Scanner input = new Scanner(System.in);
-    private static int size;
+    public static int size;
 
     public EmployeeList(int maxCapacity) {
         this.maxCapacity = maxCapacity;
@@ -23,6 +23,7 @@ public class EmployeeList {
     }
 
     public static EmployeeList copy(EmployeeList employeeList) {
+        int oldSize = employeeList.size;
         EmployeeList newList = new EmployeeList(employeeList.maxCapacity);
         for(int i = 0; i < employeeList.employees.length; i++) {
             
@@ -51,11 +52,11 @@ public class EmployeeList {
                 newList.employees[i] = new Salaried(aux.name, aux.address, aux.card, aux.getPaymentMethod(), aux.getSalary());
             }
         }
-
+        EmployeeList.size = oldSize;
         return newList;
     }
 
-    public void showAllEmployees() {
+    public void showAll() {
         for (Employee employee : employees) {
             if (employee == null) 
                 continue;
@@ -88,9 +89,9 @@ public class EmployeeList {
         return this.employees[index];
     }
 
-    public int listSize() {
-        return EmployeeList.size;
-    }
+    // public int listSize() {
+    //     return EmployeeList.size;
+    // }
     
     public void resize(int newSize) {
         System.out.printf("Antigo tamanho: %d\n", this.employees.length);
@@ -133,10 +134,12 @@ public class EmployeeList {
         }
 
         System.out.println("Adicionando empregado " + id);
+        System.out.println("SIZE: " + EmployeeList.size);
+        EmployeeList.size += 1;
+        System.out.println("SIZE: " + EmployeeList.size);
 
         System.out.println("Empregado adicionado!\n");
         System.out.println(this.employees[id].showEmployeeInfo());
-        EmployeeList.size++;
     }
 
     public void removeEmployee(int id) {

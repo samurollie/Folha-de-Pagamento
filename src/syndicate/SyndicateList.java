@@ -20,6 +20,15 @@ public class SyndicateList {
         this.employeeList = syndicateList.employeeList;
     }
 
+    public void showAll() {
+        this.employeeList.forEach((key,value) -> {
+            System.out.println("id: ");
+            System.out.println(key.showEmployeeInfo()); 
+            System.out.println("Value: ");
+            System.out.println(value.toString());
+        });
+    }
+
     public void removeEmployee(Employee employee) {
         if (!employeeList.containsKey(employee)) {
             System.out.println("Esse empregado não faz parte do sindicato!");
