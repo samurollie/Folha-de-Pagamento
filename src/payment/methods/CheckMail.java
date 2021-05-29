@@ -3,15 +3,12 @@ package src.payment.methods;
 public class CheckMail extends CheckHand{
     private String from;
     private String to;
-    private String cep;
     private String address;
     
-    public CheckMail(int number, double value, String destination, String location, String date, String from, String to,
-            String cep, String address) {
+    public CheckMail(String destination, String from, String to, String address) {
         super(destination);
         this.setFrom(from);
         this.setTo(to);
-        this.setCep(cep);
         this.setAddress(address);
     }
 

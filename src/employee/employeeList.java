@@ -23,7 +23,7 @@ public class EmployeeList {
     }
 
     public static EmployeeList copy(EmployeeList employeeList) {
-        int oldSize = employeeList.size;
+        int oldSize = EmployeeList.size;
         EmployeeList newList = new EmployeeList(employeeList.maxCapacity);
         for(int i = 0; i < employeeList.employees.length; i++) {
             
@@ -134,9 +134,7 @@ public class EmployeeList {
         }
 
         System.out.println("Adicionando empregado " + id);
-        System.out.println("SIZE: " + EmployeeList.size);
         EmployeeList.size += 1;
-        System.out.println("SIZE: " + EmployeeList.size);
 
         System.out.println("Empregado adicionado!\n");
         System.out.println(this.employees[id].showEmployeeInfo());

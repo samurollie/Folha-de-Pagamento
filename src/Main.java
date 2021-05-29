@@ -13,12 +13,6 @@ import src.historic.HistoricControll;
 import src.syndicate.SyndicateList;
 
 public class Main {
-    private static int readInt(Scanner input) {
-        int n = input.nextInt();
-        input.nextLine();
-        return n;
-    }
-
     public static void main(String[] args) {
         Random randInt = new Random();
         Scanner input = new Scanner(System.in);
@@ -51,7 +45,7 @@ public class Main {
                 EmployeeList aux = EmployeeList.copy(employees);
                 SyndicateList aux2 = new SyndicateList(syndicate);
                 historic.addAction(cmd, aux, aux2);
-                historic.showStatus();
+                // historic.showStatus();
             }
 
             switch (cmd) {
